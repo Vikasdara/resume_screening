@@ -49,5 +49,5 @@ if uploaded_file:
     prediction = model.predict(vectorized)
     category = le.inverse_transform(prediction)
 
-    job_role=le.inverse_transorm(prediction)
+    job_role=le.inverse_transform(prediction)
     st.success(f"Prediced job Role: **{job_role[0]}**")
