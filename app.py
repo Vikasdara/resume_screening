@@ -5,12 +5,13 @@ import PyPDF2
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
-CUSTOM_STOPWORDS = {
-    "experience", "years", "months", "description", "details",
-    "responsibilities", "role", "company", "project",
-    "projects", "worked", "working", "knowledge",
-    "skills", "software", "tools", "summary"
+TECH_KEYWORDS = {
+    "java", "spring", "springboot", "hibernate", "microservices",
+    "rest", "api", "sql", "mysql", "jdbc",
+    "html", "css", "javascript", "ajax", "react",
+    "python", "django", "flask", "machine", "learning"
 }
+
 
 # ---------------- LOAD FILES ----------------
 model = pickle.load(open("resume_model.pkl", "rb"))
@@ -81,11 +82,9 @@ if uploaded_file:
     missing_skills = [
     s for s in required_skills
     if s not in resume_words
-    and s not in ENGLISH_STOP_WORDS
-    and s not in CUSTOM_STOPWORDS
-    and len(s) > 3
-    and not s.isdigit()
+    and s in TECH_KEYWORDS
 ][:5]
+
 
 
 
