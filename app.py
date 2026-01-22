@@ -3,6 +3,8 @@ import pickle
 import re
 import PyPDF2
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+
 
 # ---------------- LOAD FILES ----------------
 model = pickle.load(open("resume_model.pkl", "rb"))
@@ -70,7 +72,13 @@ if uploaded_file:
     # -------- Missing Skills --------
     resume_words = set(cleaned_text.split())
     required_skills = job_role_skills.get(predicted_role, [])
-    missing_skills = [s for s in required_skills if s not in resume_words][:5]
+    missing_skills = [
+    s for s in required_skills
+    if s not in resume_words
+    and s not in ENGLISH_STOP_WORDS
+    and len(s) > 3
+][:5]
+
 
     # -------- OUTPUT --------
     st.success(f"✅ Predicted Job Role: **{predicted_role}**")
