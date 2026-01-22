@@ -7,8 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1xtZ8nNh9szwjcDRUctiwj5yjd4Swl_Vw
 """
 
-# Install necessary libraries
-!pip install streamlit PyPDF2
+
 
 import streamlit as st
 import pickle
